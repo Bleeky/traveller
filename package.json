@@ -1,0 +1,31 @@
+{
+  "name": "traveller",
+  "version": "1.0.0",
+  "description": "traveller webapp packages file",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.8.11"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-jscs": "^1.5.1",
+    "gulp-jshint": "^1.10.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bleeky/traveller.git"
+  },
+  "keywords": [
+    "traveller",
+    "webapp"
+  ],
+  "author": "bleeky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bleeky/traveller/issues"
+  },
+  "homepage": "https://github.com/Bleeky/traveller"
+}
