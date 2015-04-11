@@ -7,10 +7,9 @@ The Traveller project is about to begin beeing developed. This short file allows
 - gulp
 - bower dependencies
 - npm dependencies
-- karma
-- jasmine
+- karma framework
+- jasmine framework
 - restangular
-- angular-breadcrumb
 - angular-ui-router
 - angular-loading-bar
 - angular-file-upload
@@ -20,14 +19,32 @@ The Traveller project is about to begin beeing developed. This short file allows
 
 ## This project might use (to check out) :
 
+- angular-breadcrumb
 - underscore
 - lazyjs
+- lodash
 - basscss
 - protractor
 - browserify
 - Travis CI
+- Restclient Atom Package
+- gulp-uglify
+- gulp-livereload
+- gulp-concat
+- gulp-util
+- gulp-watch
+- gulp-minify-css
+- gulp-karma
+- gulp-plumber : error handling for gulp streams.
+- gulp-dir
+- glob
+- fs (Node)
+- mkdirp
 
 ## Questions to answer :
 
 1. How to organize the 'assets' folder ?
 2. Would it be interesting to use @Docker ?
+3. Lookup for Gulp Plugins.
+4. Lookup at Socket.io
+5. Comparison between NodeJs (Express) and Go for the Back-end.
