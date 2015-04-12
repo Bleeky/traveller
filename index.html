@@ -3,13 +3,21 @@
 
 <head>
   <title>Traveller</title>
+  <link rel="stylesheet" href="assets/css/build/all.css" type="text/css" media="screen">
 </head>
 
 <body ng-app='traveller'>
-  <h1>Welcome to Traveller !</h1>
+  <div class="flex flex-end blue border-bottom border-blue">
+    <div class="flex-auto px2">
+      <h1 class="m0">Traveller</h1>
+    </div>
+    <div class="px2">Welcome</div>
+  </div>
+  <br>
   <div ng-controller='testController as test'>
     {{ test.test }}
     {{ test.roger }}
+    {{ test.gulp }}
   </div>
   <script src="app/build/all.js"></script>
 </body>

@@ -3,10 +3,10 @@
   "js": [
     "angular",
     "angular-ui-router",
-    "angular-loading-bar"
+    "angular-loading-bar",
+    "basscss"
   ],
   "css": [
-    "./assets/css/main.scss"
   ],
   "debug": true
 }

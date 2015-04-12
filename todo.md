@@ -17,24 +17,24 @@ The Traveller project is about to begin beeing developed. This short file allows
 - browser-sync
 - jshint
 - jscs
+- lodash
+- gulp-uglify
+- gulp-minify-css
+- gulp-watch
+- gulp-concat
 
 ## This project might use (to check out) :
 
 - angular-breadcrumb
 - underscore
 - lazyjs
-- lodash
 - basscss
 - protractor
 - browserify
 - Travis CI
 - Restclient Atom Package
-- gulp-uglify
 - gulp-livereload
-- gulp-concat
 - gulp-util
-- gulp-watch
-- gulp-minify-css
 - gulp-karma
 - gulp-plumber : error handling for gulp streams.
 - gulp-dir
@@ -42,11 +42,12 @@ The Traveller project is about to begin beeing developed. This short file allows
 - gulp-imagemin
 - fs (Node)
 - mkdirp
+- font-awesone
+- modernizr/polyfills
 
 ## Questions to answer :
 
 1. How to organize the 'assets' folder ?
 2. Would it be interesting to use @Docker ? Yes.
-3. Lookup for Gulp Plugins.
-4. Lookup at Socket.io
-5. Comparison between NodeJs (Express) and Go for the Back-end.
+3. Lookup at Socket.io
+4. Comparison between NodeJs (Express) and Go for the Back-end.

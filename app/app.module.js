@@ -3,6 +3,8 @@
 var app = angular.module('traveller', []);
 
 app.controller('testController', function() {
-  this.test = 'This is a test variable. I\'ll not modify.';
-  this.roger = 'Roger.';
+  var testController = this;
+  testController.test = 'This is a test variable.';
+  testController.roger = 'I love potatoes !';
+  testController.gulp = 'I love potatoes but tomatoes to !';
 });
