@@ -7,11 +7,14 @@ var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var _ = require('lodash');
+var clean = require('gulp-clean');
+var browserSync = require('browser-sync');
 
 var gJSBuild = [];
+var debugMode;
 
-gulp.task('styles', function() {
-  gulp.src('/assets/css/dev/*.scss')
+gulp.task('styles', ['javascripts'], function() {
+  return gulp.src('/assets/css/dev/*.scss')
     .pipe(sass({
       onError: function(e) {
         console.log(e);
@@ -20,11 +23,11 @@ gulp.task('styles', function() {
     .pipe(gulp.dest('dist/css/build/'));
 });
 
-gulp.task('javascripts', function() {
-  gulp.src(['app/*.js', 'app/components/**/*.js', 'app/shared/**/*.js'])
+gulp.task('javascripts', ['dependencies'], function() {
+  gJSBuild.push('./app/build/traveller.js');
+  return gulp.src(['app/*.js', 'app/components/**/*.js', 'app/shared/**/*.js'])
     .pipe(concat('traveller.js'))
     .pipe(gulp.dest('app/build/'));
-  gJSBuild.push('./app/build/traveller.js');
 });
 
 
@@ -38,7 +41,6 @@ function addPackage(name) {
     info = require(bowerDir + '/' + name + '/bower.json'),
     main = info.main,
     dependencies = info.dependencies;
-
   if (dependencies) {
     _.forEach(dependencies, function(value, key) {
       var object = addPackage(key);
@@ -60,28 +62,25 @@ function addPackage(name) {
   return packagesOrder;
 }
 
-function buildJsDependencies(name, debug, jsFiles) {
+function buildJsDependencies(name, jsFiles) {
   var buildedFiles = gulp.src(jsFiles)
     .pipe(concat(name + '.js'));
-  if (!debug)
-    buildedFiles.pipe(uglify());
-  buildedFiles.pipe(gulp.dest('./app/build/'));
   gJSBuild.push('./app/build/' + name + '.js');
+  buildedFiles.pipe(gulp.dest('./app/build/'));
 }
 
 function buildCssDepdendencies(name, cssFiles) {
 
 }
 
-gulp.task('dependencies', function(done) {
-  var module = require('./app/dependencies.json');
-  var input = _.map(module.js, addPackage);
+gulp.task('dependencies', ['clean'], function(done) {
+  var dependencies = require('./app/dependencies.json');
+  debugMode = dependencies.debug;
+  var input = _.map(dependencies.js, addPackage);
   var jsfiles = [];
   var cssfiles = [];
-  cssfiles = cssfiles.concat(module.css);
 
   _.forEach(input, function(obj) {
-    // If we have a string, it means this is a JS one
     if (_.isArray(obj)) {
       jsfiles = jsfiles.concat(obj);
     } else if (_.isObject(obj)) {
@@ -89,15 +88,52 @@ gulp.task('dependencies', function(done) {
       cssfiles = cssfiles.concat(obj.css);
     }
   });
-  console.log(jsfiles, cssfiles);
-  buildJsDependencies(module.name, module.debug, _.uniq(jsfiles));
-  buildCssDepdendencies(module.name, _.uniq(cssfiles));
+  buildJsDependencies(dependencies.name, _.uniq(jsfiles));
+  cssfiles = cssfiles.concat(dependencies.css);
+  done();
 });
 
-gulp.task('concat', function() {
-  gulp.src(gJSBuild)
-    .pipe(concat('all.js'))
-    .pipe(gulp.dest('./app/build/'));
+gulp.task('clean', function() {
+  return gulp.src('./app/build/*.js')
+    .pipe(clean());
 });
 
-gulp.task('default', ['dependencies', 'javascripts', 'styles', 'concat']);
+gulp.task('concat', ['styles'], function(done) {
+  var final = gulp.src(gJSBuild)
+    .pipe(concat('all.js'));
+  if (!debugMode)
+    final.pipe(uglify({
+      mangle: false,
+      warnings: false
+    }));
+  final.pipe(gulp.dest('./app/build/'));
+  done();
+});
+
+gulp.task('reload', ['concat'], function() {
+  browserSync.reload();
+})
+
+gulp.task('build', ['concat'], function(callback) {
+  var files = [
+      'index.html',
+      'app/components/**/*.html',
+      'app/shared/**/*.html'
+   ];
+  browserSync(files,{
+        server: {
+            baseDir: "./"
+        }
+    });
+
+  gulp.watch([
+      'app/*.js', 'app/components/**/*.js', 'app/shared/**/*.js',
+      'assets/css/*.scss', 'assets/css/**/*.scss'
+    ],
+    function() {
+      console.log('Some modifications appeared !')
+      gulp.start('reload');
+    });
+});
+
+gulp.task('default', ['build']);
