@@ -22,13 +22,13 @@ The Traveller project is about to begin beeing developed. This short file allows
 - gulp-minify-css
 - gulp-watch
 - gulp-concat
+- basscss
 
 ## This project might use (to check out) :
 
 - angular-breadcrumb
 - underscore
 - lazyjs
-- basscss
 - protractor
 - browserify
 - Travis CI
@@ -40,10 +40,15 @@ The Traveller project is about to begin beeing developed. This short file allows
 - gulp-dir
 - glob
 - gulp-imagemin
+- gulp-notify
 - fs (Node)
 - mkdirp
 - font-awesone
 - modernizr/polyfills
+- Eslint
+- Lazyr.js
+- imagesloaded
+- atom/web-browser
 
 ## Questions to answer :
 
@@ -51,3 +56,11 @@ The Traveller project is about to begin beeing developed. This short file allows
 2. Would it be interesting to use @Docker ? Yes.
 3. Lookup at Socket.io
 4. Comparison between NodeJs (Express) and Go for the Back-end.
+5. How to make my personnal icons files and use them ?
+6. First mockup of the main page.
+7. Define coding style, and set linters properly for the Javascript/SCSS.
+
+## Next to-do :
+
+1. Correct the dependencies.json file (no Js/Css).
+2. Setup notifications for Gulp and Karma when building/testing.
