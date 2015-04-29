@@ -43,9 +43,9 @@ The Traveller project is about to begin beeing developed. This short file allows
 - gulp-notify
 - fs (Node)
 - mkdirp
-- font-awesone
+- font-awesome
 - modernizr/polyfills
-- Eslint
+- Eslint (Slower)
 - Lazyr.js
 - imagesloaded
 - atom/web-browser
@@ -64,3 +64,7 @@ The Traveller project is about to begin beeing developed. This short file allows
 
 1. Correct the dependencies.json file (no Js/Css).
 2. Setup notifications for Gulp and Karma when building/testing.
+3. Lookup for JSDoc.
+4. Resolve the Browser-Sync problem when a change occurs.
+5. Launch the linters in the Gulp.
+6. Setup the merge process : the linters must be okay before merging.

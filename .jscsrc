@@ -1,4 +1,8 @@
 {
+    "validateParameterSeparator": ", ",
+    "disallowSpacesInsideArrayBrackets": "all",
+    "disallowSpacesInsideObjectBrackets": "all",
+    "disallowSpacesInsideParentheses": true,
     "disallowCommaBeforeLineBreak": null,
     "disallowDanglingUnderscores": true,
     "disallowEmptyBlocks": true,
@@ -11,51 +15,47 @@
     "disallowMultipleVarDecl": null,
     "disallowPaddingNewlinesInBlocks": null,
     "disallowQuotedKeysInObjects": true,
-    "disallowSpaceAfterBinaryOperators": true,
+    "disallowSpaceAfterBinaryOperators": null,
     "disallowSpaceAfterKeywords": [ "for", "while", "do", "switch" ],
-    "disallowSpaceAfterLineComment": true,
-    "disallowSpaceAfterObjectKeys": null,
+    "disallowSpaceAfterLineComment": null,
+    "disallowSpaceAfterObjectKeys": true,
     "disallowSpaceAfterPrefixUnaryOperators": true,
     "disallowSpaceBeforeBinaryOperators": null,
     "disallowSpaceBeforeBlockStatements": null,
     "disallowSpaceBeforePostfixUnaryOperators": true,
-    "disallowSpacesInAnonymousFunctionExpression": {
-        "beforeOpeningCurlyBrace": true
-    },
     "disallowSpacesInConditionalExpression": null,
     "disallowSpacesInFunctionDeclaration": null,
-    "disallowSpacesInFunctionExpression": {
-        "beforeOpeningRoundBrace": true
-    },
     "disallowSpacesInNamedFunctionExpression": null,
-    "disallowSpacesInsideArrayBrackets": null,
-    "disallowSpacesInsideObjectBrackets": null,
-    "disallowSpacesInsideParentheses": null,
-    "disallowTrailingComma": null,
+    "disallowTrailingComma": true,
     "disallowTrailingWhitespace": true,
     "disallowYodaConditions": true,
     "maximumLineLength": 120,
-    "requireAlignedObjectValues": "skipWithFunction",
+    "requireAlignedObjectValues": null,
     "requireBlocksOnNewline": true,
     "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
     "requireCapitalizedConstructors": true,
     "requireCommaBeforeLineBreak": true,
+    "requireCapitalizedComments": true,
     "requireCurlyBraces": [ "if", "else", "for", "while", "do", "try", "catch" ],
     "requireDotNotation": true,
     "requireKeywordsOnNewLine": null,
     "requireLineFeedAtFileEnd": true,
-    "requireMultipleVarDecl": true,
+    "requireMultipleVarDecl": null,
     "requireOperatorBeforeLineBreak": true,
-    "requirePaddingNewlinesInBlocks": true,
+    "requirePaddingNewlinesInBlocks": null,
     "requireParenthesesAroundIIFE": true,
     "requireSpaceAfterBinaryOperators": null,
-    "requireSpaceAfterKeywords": [ "if", "else", "return", "try", "catch" ],
+    "requireSpaceAfterKeywords": [ "if", "else", "return", "try", "catch"],
     "requireSpaceAfterLineComment": null,
-    "requireSpaceAfterObjectKeys": true,
+    "requireSpaceAfterObjectKeys": null,
+    "requireSpaceBeforeObjectValues": true,
     "requireSpaceAfterPrefixUnaryOperators": null,
     "requireSpaceBeforeBinaryOperators": true,
     "requireSpaceBeforeBlockStatements": true,
     "requireSpaceBeforePostfixUnaryOperators": null,
+    "requireSpacesInForStatement": true,
+    "requireSpaceBetweenArguments": true,
+    "requireLineBreakAfterVariableAssignment": true,
     "requireSpacesInAnonymousFunctionExpression": {
         "beforeOpeningRoundBrace": true
     },
@@ -65,22 +65,22 @@
         "beforeOpeningCurlyBrace": true
     },
     "requireSpacesInFunctionExpression": {
+        "beforeOpeningRoundBrace": true,
         "beforeOpeningCurlyBrace": true
     },
     "requireSpacesInNamedFunctionExpression": {
         "beforeOpeningRoundBrace": true,
         "beforeOpeningCurlyBrace": true
     },
-    "requireSpacesInsideArrayBrackets": "all",
-    "requireSpacesInsideObjectBrackets": "allButNested",
-    "requireSpacesInsideParentheses": "all",
-    "requireTrailingComma": true,
-    "safeContextKeyword": ["that"],
+    "requireTrailingComma": null,
+    "requireSemicolons": true,
+    "safeContextKeyword": ["vm"],
     "validateIndentation": 4,
     "validateJSDoc": {
         "checkParamNames": true,
         "requireParamTypes": true
     },
     "validateLineBreaks": "LF",
-    "validateQuoteMarks": true
+    "validateQuoteMarks": true,
+    "requireFunctionDeclarations": true
 }
