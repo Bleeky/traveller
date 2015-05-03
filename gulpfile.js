@@ -10,7 +10,9 @@ var _ = require('lodash');
 var rimraf = require('gulp-rimraf');
 var browserSync = require('browser-sync').create();
 var minifyCSS = require('gulp-minify-css');
-
+var karma = require('gulp-karma');
+var gprompt = require('gulp-prompt');
+var git = require('gulp-git');
 
 var gJSBuild = [];
 var gCSSBuild = [];
@@ -39,7 +41,7 @@ gulp.task('javascripts', ['dependencies'], function () {
 });
 
 // Add packages and their dependencies recursivly.
-function addPackage (name) {
+function addPackage(name) {
     var packagesOrder = {
         css: [],
         js: []
@@ -69,14 +71,14 @@ function addPackage (name) {
     return packagesOrder;
 }
 
-function buildJsDependencies (name, jsFiles) {
+function buildJsDependencies(name, jsFiles) {
     var buildedFiles = gulp.src(jsFiles)
         .pipe(concat(name + '.js'));
     gJSBuild.push('./app/build/' + name + '.js');
     buildedFiles.pipe(gulp.dest('./app/build/'));
 }
 
-function buildCssDepdendencies (name, cssFiles) {
+function buildCssDepdendencies(name, cssFiles) {
     if (cssFiles.length > 0) {
         gCSSBuild.push('./assets/css/build/' + name + '.css');
     }
@@ -111,6 +113,7 @@ gulp.task('dependencies', function (done) {
     done();
 });
 
+// Concat all the Js and Css files
 gulp.task('concat', ['styles'], function (done) {
     var finalJS = gulp.src(gJSBuild)
         .pipe(concat('all.js'));
@@ -134,6 +137,7 @@ gulp.task('reload', ['concat'], function (done) {
     done();
 });
 
+// Build the application and watch the files
 gulp.task('build', ['concat'], function () {
     var files = [
         'index.html',
@@ -158,11 +162,77 @@ gulp.task('build', ['concat'], function () {
         });
 });
 
+// Lint the code and output errors
+gulp.task('lint', ['clean'], function (done) {
+    gulp.src(['./app/*.js', './app/components/**/*.js', './app/shared/**/*.js'])
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
+    gulp.src(['./app/*.js', './app/components/**/*.js', './app/shared/**/*.js'])
+        .pipe(jscs());
+    console.log('Some modifications appeared !');
+    done();
+});
+
+// Lauches Karma unit tests
+gulp.task('test', function () {
+    return gulp.src('tests/**/*.js')
+        .pipe(karma({
+            configFile: './karma.conf.js',
+            action: 'run'
+        }))
+        .on('error', function (err) {
+            throw err;
+        });
+});
+
+// Commit the current content on the current branch
+gulp.task('commit', function () {
+    gulp.src('')
+        .pipe(gprompt.prompt([{
+                type: 'input',
+                name: 'first',
+                message: 'Enter your issue name :'
+            }, {
+                type: 'input',
+                name: 'second',
+                message: 'Enter the time :'
+            }, {
+                type: 'input',
+                name: 'third',
+                message: 'Enter your commit message :'
+            }],
+            function (res) {
+                return gulp.src('./')
+                    .pipe(git.commit(res.first + ' #time ' + res.second + ' #comment ' + res.third, {
+                        args: '-a'
+                    }));
+            }));
+});
+
+// Push the current content on the current branch
+gulp.task('push', function () {
+
+});
+
+// Generate the application documentation
+gulp.task('doc', function () {
+
+});
+
+// Obfuscate the application code
+gulp.task('obfuscate', function () {
+
+});
+
 // Delete the builded content
 gulp.task('clean', function (done) {
-    gulp.src('./assets/css/build/*.css', {read: false})
+    gulp.src('./assets/css/build/*.css', {
+            read: false
+        })
         .pipe(rimraf());
-    gulp.src('./app/build/*.js', {read: false})
+    gulp.src('./app/build/*.js', {
+            read: false
+        })
         .pipe(rimraf());
     done();
 });
