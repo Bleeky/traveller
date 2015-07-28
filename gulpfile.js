@@ -13,6 +13,7 @@ var minifyCSS = require('gulp-minify-css');
 var karma = require('gulp-karma');
 var gprompt = require('gulp-prompt');
 var git = require('gulp-git');
+var shell = require('gulp-shell');
 
 var gJSBuild = [];
 var gCSSBuild = [];
@@ -215,9 +216,13 @@ gulp.task('push', function () {
 });
 
 // Generate the application documentation
-gulp.task('doc', function () {
-
-});
+gulp.task('doc', shell.task([
+    'node_modules/jsdoc/jsdoc.js ' +
+    '-c node_modules/angular-jsdoc/conf.json ' +
+    '-t node_modules/ink-docstrap/template ' +
+    '-d doc/ ' +
+    '-r app/'
+]));
 
 // Obfuscate the application code
 gulp.task('obfuscate', function () {
@@ -234,6 +239,12 @@ gulp.task('clean', function (done) {
             read: false
         })
         .pipe(rimraf());
+    gulp.src('./doc/*', {
+            read: false
+        })
+        .pipe(rimraf({
+            force: true
+        }));
     done();
 });
 

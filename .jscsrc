@@ -69,7 +69,7 @@
         "beforeOpeningCurlyBrace": true
     },
     "requireSpacesInNamedFunctionExpression": {
-        "beforeOpeningRoundBrace": true,
+        "beforeOpeningRoundBrace": null,
         "beforeOpeningCurlyBrace": true
     },
     "requireTrailingComma": null,

@@ -90,3 +90,15 @@ The Traveller project is about to begin beeing developed. This short file allows
 6. Setup the merge process : the linters must be okay before merging.
 7. Look for CSS LazyLoading.
 8. Look for nice browser testing tools.
+9. Multiples route files.
+10. Personnalized snippets for Angular JsDoc.
+11. CheatSheet for angular JsDoc Directives.
+12. Look at ng-annotate.
+13. Make a command for copying the doc on the server.
+
+## EIP :
+
+1. Code coverage tool.
+2. Routing library (ui-router).
+3. Look for a widget Tool (Jquery, YUI, Dojo ...)
+4. For production environnement, see NodeJs environnement variable reading.
